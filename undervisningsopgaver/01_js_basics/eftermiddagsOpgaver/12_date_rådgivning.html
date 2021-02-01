@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+
+    <p>Gæt et tal</p>
+    <input type="text" id="guess">
+    <button>Få svaret!</button>
+
+    <script>
+        let tal = Math.round(Math.random() * 20);
+        document.querySelector("button").addEventListener("click", buttonClicked);
+
+        function buttonClicked() {
+            let gæt = document.querySelector("#guess").value;
+
+            if (gæt == tal) {
+                console.log("Du gættede rigtigt!");
+            } else if (gæt > tal) {
+                console.log("Du gættede for højt");
+            } else if (gæt < tal) {
+                console.log("Du gættede for lavt");
+            }
+        }
+
+    </script>
+</body>
+
+</html>
