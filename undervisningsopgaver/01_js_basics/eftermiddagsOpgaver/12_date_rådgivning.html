@@ -10,25 +10,44 @@
 
 <body>
 
-    <p>Gæt et tal</p>
-    <input type="text" id="guess">
-    <button>Få svaret!</button>
+    <p>Indtast din alder</p>
+    <input type="text" id="din_alder">
+    <p>Indtast din dates alder</p>
+    <input type="text" id="alder_date">
+    <button>Se om reglen er overholdt</button>
 
     <script>
-        let tal = Math.round(Math.random() * 20);
         document.querySelector("button").addEventListener("click", buttonClicked);
 
         function buttonClicked() {
-            let gæt = document.querySelector("#guess").value;
+            let alder = document.querySelector("#din_alder").value;
+            if (alder <= 15) {
+                console.log("Du er for ung til dette site");
+            }
+            let alderDate = document.querySelector("#alder_date").value;
+            if (alder <= 15) {
+                console.log("Du er for ung til dette site");
+            }
 
-            if (gæt == tal) {
-                console.log("Du gættede rigtigt!");
-            } else if (gæt > tal) {
-                console.log("Du gættede for højt");
-            } else if (gæt < tal) {
-                console.log("Du gættede for lavt");
+            let regel1 = (alder / 2) + 7;
+            console.log(regel1);
+            let regel2 = (alderDate - 7) * 2;
+            console.log(regel2);
+
+            if (alderDate < regel1) {
+                console.log("Din date er for ung");
+            } else if (alderDate > regel2) {
+                console.log("Din date er for gammel");
+            } else {
+                console.log("Tillykke, din date har den rette alder!")
             }
         }
+        //
+        // if (gæt == tal) {
+        // console.log("Du gættede rigtigt!");
+        // } else if (gæt > tal) {
+        // console.log("Du gættede for højt");
+        // } else if (gæt < tal) { // console.log("Du gættede for lavt"); // } //
 
     </script>
 </body>

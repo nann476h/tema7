@@ -10,12 +10,13 @@
 
 <body>
 
-    <p>Gæt et tal</p>
-    <input type="text" id="guess">
+    <p>Indtast din alder</p>
+    <input type="text" id="din_alder">
+    <p>Indtast din dates alder</p>
+    <input type="text" id="alder_date">
     <button>Få svaret!</button>
 
     <script>
-        let tal = Math.round(Math.random() * 20);
         document.querySelector("button").addEventListener("click", buttonClicked);
 
         function buttonClicked() {
