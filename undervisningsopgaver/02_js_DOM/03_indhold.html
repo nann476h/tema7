@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        img {
+            width: 100%;
+            /*    vertical-align: middle;*/
+        }
+
+        header,
+        footer {
+            text-align: center;
+        }
+
+        header,
+        footer {
+            padding: 10px 0;
+            border: 1px solid #888;
+        }
+
+
+        @media (min-width: 600px) {
+
+            section {
+                display: grid;
+                /*        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));*/
+                grid-template-columns: 1fr 1fr;
+                grid-gap: 20px;
+            }
+
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <h1>Titel</h1>
+    </header>
+
+    <main>
+        <h2>Undertitel</h2>
+
+        <section>
+
+            <article>
+                <img src="https://placeimg.com/640/480/nature" alt="">
+                <h3>Article 1</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis modi explicabo et inventore ipsum atque perferendis velit iusto a qui rem quidem suscipit, mollitia nemo eveniet quas minima, voluptatibus hic?</p>
+            </article>
+            <article>
+                <img src="https://placeimg.com/640/480/people" alt="">
+                <h3>Article 2</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis modi explicabo et inventore ipsum atque perferendis velit iusto a qui rem quidem suscipit, mollitia nemo eveniet quas minima, voluptatibus hic?</p>
+            </article>
+
+        </section>
+
+    </main>
+    <footer>
+        <p>This is the footer</p>
+    </footer>
+
+
+    <script>
+        //Lavet elementerne til constanter
+        //Benytter pseudo selector: first-child, nth-child
+
+        // header
+        const titel = document.querySelector("header");
+        console.log(titel);
+
+        // main
+        const main = document.querySelector("main");
+        console.log(main);
+
+        // h2
+        const undertitel = document.querySelector("h2");
+        console.log(undertitel);
+
+        // section
+        const section = document.querySelector("section");
+        console.log(section);
+
+        // 1. pic
+        const pic1 = document.querySelector("article:first-child img")
+        console.log(pic1);
+
+        // 2. pic
+        const pic2 = document.querySelector("article:nth-child(2) img")
+        console.log(pic2);
+
+        // 1. article
+        const article1 = document.querySelector("article:first-child");
+        console.log(article1);
+
+        // 2. article
+        const article2 = document.querySelector("article:nth-child(2)");
+        console.log(article2);
+
+        // 1. h3
+        const h3First = document.querySelector("article:first-child h3");
+        console.log(h3First);
+
+        // 2. h3
+        const h3Second = document.querySelector("article:nth-child(2) h3");
+        console.log(h3Second);
+
+        // 1. p
+        const pFirst = document.querySelector("article:first-child p");
+        console.log(pFirst);
+
+        // 2. p
+        const pSecond = document.querySelector("article:nth-child(2) p");
+        console.log(pSecond);
+
+        // footer
+        const footer = document.querySelector("footer");
+        console.log(footer);
+
+
+        //Udskift titler
+
+        titel.textContent = "Nannas billedgalleri";
+        undertitel.textContent = "Velkommen";
+        h3First.textContent = "Billede 1";
+        h3Second.textContent = "Billede 2";
+
+        //  titel.textContent = "Billedgalleri";
+        //Ændre titlens layout -uden dette: uformateret indhold//
+        //  titel.innerHTML = "<h1>Billeder</h1>";
+
+
+
+        //udskift billeder og alt tagget til billederne
+
+        pic1.src = "https://placeimg.com/640/480/animals";
+        pic1.alt = "Dette er et billede af et dyr";
+        // console.log(pic1);
+        pic2.src = "https://placeimg.com/640/480/arch";
+        pic2.alt = "Dette er et billede af arkitektur";
+        // console.log(pic2);
+
+    </script>
+</body>
+
+</html>
