@@ -4,26 +4,27 @@
     box-sizing: border-box;
 }
 */
-
 img {
     width: 100%;
-    vertical-align: middle;
+    /*    vertical-align: middle;*/
 }
 
-#first_section {
+header,
+footer {
     text-align: center;
 }
 
+header,
+footer {
+    padding: 10px 0;
+    border: 1px solid #888;
+}
+
+
 @media (min-width: 600px) {
 
-    #third_section {
+    section {
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-gap: 20px;
-
-    }
-
-
-    footer {
-        text-align: center;
     }
