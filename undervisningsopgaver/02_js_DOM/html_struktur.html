@@ -9,7 +9,6 @@
 </head>
 
 <body>
-
     <header>
         <h1>Titel</h1>
     </header>
@@ -32,11 +31,25 @@
 
         </section>
 
-
     </main>
     <footer>
         <p>This is the footer</p>
     </footer>
+
+
+    <script>
+        const titel = document.querySelector("header");
+        console.log("titel");
+        titel.textContent = "Billedgalleri";
+        //Ændre titlens layout -uden dette: uformateret indhold//
+        titel.innerHTML = "<h1>Billeder</h1>";
+
+        // Kan også skrives med pseudo selector "first child"
+        //const pic1 = document.querySelector("article:first-child img")
+        const pic1 = document.querySelector("article img")
+        console.log("pic1");
+
+    </script>
 </body>
 
 </html>
