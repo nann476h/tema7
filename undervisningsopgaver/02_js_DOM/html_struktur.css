@@ -1,0 +1,29 @@
+/*
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+*/
+
+img {
+    width: 100%;
+    vertical-align: middle;
+}
+
+#first_section {
+    text-align: center;
+}
+
+@media (min-width: 600px) {
+
+    #third_section {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 20px;
+
+    }
+
+
+    footer {
+        text-align: center;
+    }
