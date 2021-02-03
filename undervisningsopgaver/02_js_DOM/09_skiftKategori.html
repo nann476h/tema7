@@ -146,7 +146,7 @@
             pic1.addEventListener("click", pic1Cliked);
 
             function pic1Cliked() {
-                console.log("pic1");
+                console.log("pic1 skifter til dyr");
                 pic1.src = "https://placeimg.com/640/480/animals";
                 pic1.alt = "Dette er et billede af et dyr";
             }
@@ -154,14 +154,15 @@
 
             //skift kategori på 2 billede ved click
 
-            let kategori = ["animals", "arch", "people", "nature", "tech"];
+            const kategori = ["animals", "arch", "people", "nature", "tech"];
 
-            pic2.addEventListener("click", pic2Clicked);
+            pic2.addEventListener("click", skift);
 
-            function pic2Clicked() {
-                console.log("pic2");
-                pic2.src = "https://placeimg.com/640/480/tech";
-                pic2.alt = "Dette billede er ændret til tech";
+            function skift() {
+                console.log("pic2 skifter til random");
+                const nummer = Math.round(Math.random() * 4);
+                pic2.src = "https://placeimg.com/640/480/" + kategori[nummer];
+                pic2.alt = kategori[nummer];
             }
 
 
