@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+
+    <style>
+        .liste {
+            padding: 10px 0;
+            border: 2px solid #888;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <section class="liste"></section>
+    <template>
+        <article id="Dyr">
+            <h3></h3>
+            <img src="" alt="">
+            <p class="type">Type: </p>
+            <p class="levested">Levested: </p>
+        </article>
+    </template>
+
+
+    <script>
+        window.addEventListener("load", erSidenLoaded);
+
+        function erSidenLoaded() {
+            console.log("siden er loaded");
+
+
+            //Array
+            let dyr = [{
+                    "navn": "frø",
+                    "type": "amfibie",
+                    "levested": "vandhullet",
+                    "billede": "http://mabe-kea.dk/E19/pics/frog.png"
+                },
+
+                {
+                    "navn": "gris",
+                    "type": "pattedyr",
+                    "levested": "grissestien",
+                    "billede": "http://mabe-kea.dk/E19/pics/pig.png"
+                },
+
+                {
+                    "navn": "ræv",
+                    "type": "pattedyr",
+                    "levested": "skoven",
+                    "billede": "http://mabe-kea.dk/E19/pics/fox.png"
+                },
+
+                {
+                    "navn": "sild",
+                    "type": "fisk",
+                    "levested": "havet",
+                    "billede": "http://mabe-kea.dk/E19/pics/sild.jpg"
+                },
+
+                {
+                    "navn": "krokodille",
+                    "type": "krybdyr",
+                    "levested": "floden",
+                    "billede": "http://mabe-kea.dk/E19/pics/kroko.jpg"
+                }
+            ];
+
+            //udskriver array i konsol
+            console.log(dyr);
+
+
+            //implementere array i html
+            //            const listeVisning = document.querySelector("#liste");
+            //
+            // dyr.forEach(dyr => {
+            // listeVisning.innerHTML += `<p>${dyr.navn}, ${dyr.type} fra ${dyr.levested}`
+            // })
+
+            const liste = document.querySelector(".liste");
+            const dyrTemplate = document.querySelector("template");
+
+            dyr.forEach(dyr => {
+                let klon = dyrTemplate.cloneNode(true).content;
+                klon.querySelector("h3").textContent = dyr.navn;
+                klon.querySelector("img").src = dyr.billede;
+                klon.querySelector(".type").textContent = (`Type:${dyr.type}`);
+                klon.querySelector(".levested").textContent = (`Levested:${dyr.levested}`);
+                liste.appendChild(klon);
+            })
+
+        }
+
+    </script>
+</body>
+
+</html>
