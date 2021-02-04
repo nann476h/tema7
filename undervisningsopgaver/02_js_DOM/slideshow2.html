@@ -55,14 +55,17 @@
             //opret funktion til at skifte billede
             function skift() {
                 console.log("knap skifter billede");
-                if (tal < 7) {
+                if (tal < 6) {
                     tal++;
                     pic1.src = "https://raw.githubusercontent.com/martinbregnhoi/Tema7E20/master/billeder/" + slideshow[tal];
                     pic1.alt = slideshow[tal];
+
+                    //Skifter "skift billede" knappen til "forfra"
                 } else {
+                    button.textContent = "Forfra";
                     tal = 0;
-                    pic1.src = "https://raw.githubusercontent.com/martinbregnhoi/Tema7E20/master/billeder/" + slideshow[tal];
                 }
+                pic1.src = "https://raw.githubusercontent.com/martinbregnhoi/Tema7E20/master/billeder/" + slideshow[tal];
             }
 
 
