@@ -1,0 +1,34 @@
+[{
+        "navn": "frø",
+        "type": "amfibie",
+        "levested": "vandhullet",
+        "billede": "http://mabe-kea.dk/E19/pics/frog.png"
+                },
+
+    {
+        "navn": "gris",
+        "type": "pattedyr",
+        "levested": "grissestien",
+        "billede": "http://mabe-kea.dk/E19/pics/pig.png"
+                },
+
+    {
+        "navn": "ræv",
+        "type": "pattedyr",
+        "levested": "skoven",
+        "billede": "http://mabe-kea.dk/E19/pics/fox.png"
+                },
+
+    {
+        "navn": "sild",
+        "type": "fisk",
+        "levested": "havet",
+        "billede": "http://mabe-kea.dk/E19/pics/sild.jpg"
+                },
+
+    {
+        "navn": "krokodille",
+        "type": "krybdyr",
+        "levested": "floden",
+        "billede": "http://mabe-kea.dk/E19/pics/kroko.jpg"
+                }]

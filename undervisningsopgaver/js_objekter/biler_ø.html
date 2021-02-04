@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+
+    <style>
+        .liste {
+            padding: 10px 0;
+            border: 2px solid #888;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="liste"></section>
+    <template>
+        <article id="biler">
+            <h1>mærke: </h1>
+            <h2>model: </h2>
+            <h3>km: </h3>
+            <p>motor: </p>
+            <p>udstyr: </p>
+
+        </article>
+    </template>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", start);
+
+        function start() {
+
+
+            const liste = document.querySelector(".liste");
+            const bilTemplate = document.querySelector("template");
+
+
+            //fortæller script hvad der er for en json fil jeg vil have hentet ind
+            const fil = "biler_ø.json";
+
+            //assynkron funktion som kan hente json ind så jeg kan loope (den skal hente "fil")
+            async function hentdata(fil) {
+                const result = await fetch(fil);
+                const json = await result.json();
+                //når den har fetch'et filen, så hent json ud af den, gem det i variabel "json" - tag det json og kør funktion
+                vis(json);
+            }
+
+
+            function vis(biler) {
+                //løb igennem array "dyr"
+                biler.forEach(bil => {
+                    let klon = bilTemplate.cloneNode(true).content;
+                    klon.querySelector("h1").textContent = (`Mærke :${bil.mærke}`);
+                    klon.querySelector("h2").textContent = (`Model :${bil.km}`);
+                    klon.querySelector("h3").textContent = (`Km :${bil.km}`);
+                    klon.querySelector("article:first-child p").textContent = (`Motor :${bil.motor}`);
+                    klon.querySelector("p:nth-of-type(2n)").textContent = (`Udstyr :${bil.udstyr}`);
+                    liste.appendChild(klon);
+                })
+            }
+
+            hentdata(fil);
+        }
+    </script>
+</body></html>
