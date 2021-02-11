@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Babushka</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background-color: white;
+        }
+
+        /*first section*/
+
+        #first_section .section_wrapper {
+            background-color: transparent;
+            padding-top: 20vw;
+        }
+
+
+        #first_section {
+            max-width: none;
+            width: 100vw;
+            height: 100vh;
+            background-image: url(rest.jpg);
+            background-size: cover;
+            background-position: center;
+        }
+
+
+
+        #first_section .section_wrapper h1 {
+            text-align: center;
+            font-size: 4rem;
+            font-family: 'playfair_displayregular';
+        }
+
+        #first_section .section_wrapper .boks {
+            background-color: white;
+            opacity: 60%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px solid lightgrey;
+
+        }
+
+
+        /*nav*/
+        nav {
+            display: flex;
+            justify-content: center;
+            height: 30px;
+            margin-bottom: px;
+            margin-top: 20px;
+        }
+
+        nav button {
+            border: 4px solid #095a4d;
+            border-radius: 5px;
+            background-color: white;
+            padding-right: 10px;
+            padding-left: 10px;
+            margin: 2px;
+            font-family: 'playfair_displayregular';
+        }
+
+        button:hover {
+            border: 4px solid rgba(13, 88, 113, 0.4);
+            transform: scale(1.15);
+            transition: ease-in;
+        }
+
+        .valgt {
+            border: 4px solid rgba(13, 88, 113, 0.4);
+        }
+
+        /*header*/
+        header h1 {
+            padding-left: 20px;
+            padding-bottom: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+
+        /*main*/
+
+        img {
+            position: relative;
+            max-width: 100%;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        #liste {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 4fr));
+            grid-gap: 20px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+
+        article {
+            box-shadow: 5px 5px 10px #989898;
+            border: 2px solid #0e6044;
+        }
+
+        article:hover {
+            transform: scale(1.05);
+            transition: ease-in;
+        }
+
+        article h2,
+        p {
+            padding-left: 10px;
+        }
+
+
+
+        /* Fonte */
+
+
+        @font-face {
+            font-family: 'playfair_displayregular';
+            src: url('fonts/playfairdisplay-variablefont_wght-webfont.woff2') format('woff2'),
+                url('fonts/playfairdisplay-variablefont_wght-webfont.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+
+        }
+
+        @font-face {
+            font-family: 'varela_roundregular';
+            src: url('fonts/varelaround-regular-webfont.woff2') format('woff2'),
+                url('fonts/varelaround-regular-webfont.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+    </style>
+</head>
+
+
+
+<body>
+
+    <section id="first_section">
+        <div class="section_wrapper">
+            <div class="boks">
+                <h1>BABUSHKA</h1>
+            </div>
+        </div>
+    </section>
+
+    <nav>
+        <button data-kategori="alle" class="valgt">Alle</button>
+        <button data-kategori="forretter">Forretter</button>
+        <button data-kategori="hovedretter">Hovedretter</button>
+        <button data-kategori="sideorders">Sideorders</button>
+        <button data-kategori="desserter">Desserter</button>
+        <button data-kategori="drikkevarer">Drikkevarer</button>
+    </nav>
+
+    <header>
+        <h1>Menu</h1>
+    </header>
+
+    <main>
+        <section id="liste"></section>
+        <template>
+            <article class="kategori">
+                <img src="" alt="" class="billede">
+                <h2 class="navn"></h2>
+                <p class="kortbeskrivelse"></p>
+                <p class="pris"></p>
+                <!--                <button class="detaljer">Detaljer</button>-->
+            </article>
+        </template>
+    </main>
+
+
+
+    <script>
+        const header = document.querySelector("header h1");
+        const medieurl = "https://babushka-dd8a.restdb.io/media/";
+        const myHeaders = {
+            'x-apikey': "600ec2fb1346a1524ff12de4"
+        }
+
+        document.addEventListener("DOMContentLoaded", loadJSON)
+        let ret;
+        let filter = "alle";
+
+        //første funktion der kaldes efter DOM er loaded
+        function loadJSON() {
+            console.log(loadJSON);
+
+
+            const filterKnapper = document.querySelectorAll("nav button");
+            filterKnapper.forEach(knap => knap.addEventListener("click", filtrerRetter));
+            loadJSON();
+
+
+
+
+            //eventlistener knyttet til knapperne der vælger hvad for et filter der er aktivt
+            function filtrerRetter() {
+                console.log(filtrerRetter);
+                filter = this.dataset.kategori; //sæt variabel "filter" til værdien af data-troende på den knap
+                document.querySelector(".valgt").classList.remove("valgt"); //fjern klassen valgt fra den knap
+                this.classList.add("valgt"); //marker den knap der er klikket på
+                visRetter(); // kald funktionen visRetter efter det nye filter er sat
+                header.textContent = this.textContent;
+            }
+
+
+
+            async function loadJSON() {
+                console.log(loadJSON);
+                const JSONData = await fetch("https://babushka-dd8a.restdb.io/rest/menu", {
+                    headers: myHeaders
+                });
+                retter = await JSONData.json();
+                console.log("Retter", retter);
+                visRetter();
+            }
+
+
+
+            //funktion der viser json
+            //        function visRetter() {
+            //            console.log(visRetter);
+            //            const dest = document.querySelector("#liste");
+            //            const skabelon = document.querySelector("template").content;
+            //            dest.textContent = "";
+            //
+            //            retter.forEach(menu => {
+            //                console.log("kategori", retter.kategori);
+            //                if (filter == menu.kategori || filter == "alle") {
+            //
+            //                    const klon = skabelon.cloneNode(true);
+            //                    klon.querySelector(".billede").src = medieurl + menu.billede;
+            //                    klon.querySelector(".navn").textContent = menu.navn;
+            //                    klon.querySelector("article:first-child p").textContent = menu.kortbeskrivelse;
+            //                    klon.querySelector("p:nth-of-type(2n)").textContent = menu.pris;
+            //                    klon.querySelector(".detaljer").textContent = menu.detaljer;
+            //                    klon.querySelector("article").addEventListener("click", () => visDetaljer(ret));
+            //                    dest.appendChild(klon);
+            //                }
+            //            })
+            //        }
+
+
+            function visRetter() {
+                console.log(visRetter);
+                const dest = document.querySelector("#liste");
+                const skabelon = document.querySelector("template").content;
+                dest.textContent = "";
+                //definerer variablen menu
+                retter.forEach(menu => {
+                    console.log("kategori", menu.navn);
+                    if (filter == menu.kategori || filter == "alle") {
+
+                        const klon = skabelon.cloneNode(true);
+                        klon.querySelector(".billede").src = medieurl + menu.billede;
+                        klon.querySelector(".navn").textContent = menu.navn + "";
+                        klon.querySelector(".kortbeskrivelse").textContent = menu.kortbeskrivelse + "";
+                        klon.querySelector(".pris").textContent = menu.pris + (`kr.`);
+                        klon.querySelector("article").addEventListener("click", () => visDetaljer(menu));
+                        dest.appendChild(klon);
+                    }
+                })
+            }
+
+
+            function visDetaljer(hvem) {
+                console.log(visDetaljer);
+                location.href = `babushka_detaljer.html?id=${hvem._id}`;
+            }
+
+        }
+    </script>
+
+</body></html>
